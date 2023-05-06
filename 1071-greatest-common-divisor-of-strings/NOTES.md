@@ -1,0 +1,4 @@
+- start with the minimum length string
+- check if the current substring equally divides the 2 original string
+- if yes return the current substring
+- if no continue to reduce the size of the substring and check again
