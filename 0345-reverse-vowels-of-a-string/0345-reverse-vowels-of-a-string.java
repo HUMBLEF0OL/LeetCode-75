@@ -1,31 +1,47 @@
 class Solution {
-    public Boolean checkVowel(Character c){
-        Character vowelArr[] = {'a','e','i','o','u','A','E','I','O','U'};
-        for(char currentVowel : vowelArr){
-            if(c == currentVowel)return true;
-        }
-        return false;
-    }
     public String reverseVowels(String s) {
+        // we will maintain a hashMap of vowels
+        if(s.length() == 1)
+            return s;
+        HashMap<Character,Boolean> map = new HashMap<>();
+        map.put('A',true);
+        map.put('a',true);
+        map.put('E',true);
+        map.put('e',true);
+        map.put('I',true);
+        map.put('i',true);
+        map.put('O',true);
+        map.put('o',true);
+        map.put('U',true);
+        map.put('u',true);
+        // we will be maintaining 2 pointers
         int i =0,j = s.length()-1;
-        String result = new String(s);
-        while(i<=j){
-            Boolean isIVowel = checkVowel(s.charAt(i));
-            Boolean isJVowel = checkVowel(s.charAt(j));
-            if(isIVowel && isJVowel){
-                result = result.substring(0,i)+s.charAt(j) +result.substring(i+1);
-                result = result.substring(0,j)+s.charAt(i) +result.substring(j+1);
-                i++;
+        StringBuilder output = new StringBuilder(s);
+        while(i<j)
+        {
+            char c1 = output.charAt(i);
+            char c2 = output.charAt(j);
+            if(map.containsKey(c1) && map.containsKey(c2))
+            {
+                char temp = c1;
+                StringBuilder s1 = new StringBuilder(output.substring(0,i)+c2);
+                StringBuilder s2 = new StringBuilder(output.substring(i+1,j)+c1+output.substring(j+1));
+                output = new StringBuilder(s1);
+                output.append(s2);
+                i++;j--;
+            }
+            else if(map.containsKey(c1))
                 j--;
-            } else if(isIVowel && !isJVowel){
-                j--;
-            } else if(!isIVowel && isJVowel){
+            else if(map.containsKey(c2))
                 i++;
-            } else {
+            else
+            {
                 i++;
                 j--;
             }
         }
-        return result.toString();
+        return output.toString();
+        
+        
     }
 }
