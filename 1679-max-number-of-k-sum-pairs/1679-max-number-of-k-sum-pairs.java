@@ -1,24 +1,17 @@
 class Solution {
-    public int maxOperations(int[] nums, int k) {
+    public int maxOperations(int[] arr, int k) {
+        int pair = 0;
         HashMap<Integer,Integer> map = new HashMap<>();
-        for(int i =0;i<nums.length;i++){
-            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
-        }
-        int result = 0;
-        for(int i =0;i<nums.length;i++){
-            if(map.get(k-nums[i]) != null){
-                if(nums[i]*2 == k){
-                    int x = (int)Math.floor(map.get(nums[i]))/2;
-                    result = result + x;
-                } else{
-                    int x = map.get(nums[i]);
-                    int y = map.get(k-nums[i]);
-                    result = result + Math.min(x,y);
-                    map.remove(k-nums[i]);
-                }
-                map.remove(nums[i]);
+        for(int i =0;i< arr.length;i++){
+            int required = k- arr[i];
+            if(map.containsKey(required) && map.get(required)>0){
+                pair++;
+                map.put(required,map.get(required)-1);
+            }
+            else{
+                map.put(arr[i],map.getOrDefault(arr[i],0)+1);
             }
         }
-        return result;
+        return pair;
     }
 }
