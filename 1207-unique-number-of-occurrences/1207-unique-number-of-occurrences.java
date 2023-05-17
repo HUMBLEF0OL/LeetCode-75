@@ -1,14 +1,11 @@
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
         HashMap<Integer,Integer> map = new HashMap<>();
-        for(int i : arr){
-            map.put(i,map.getOrDefault(i,0)+1);
+        for(int i:arr){
+        	map.put(i,1+map.getOrDefault(i,0));
         }
-        HashSet<Integer> set = new HashSet<>();
-        for(int keys : map.keySet()){
-            if(set.contains(map.get(keys)))return false;
-            set.add(map.get(keys));
-        }
-        return true;
+        // if all the element values are unique then return true otherwise we can say that 2 elements have same number of repetitions hence can return false
+        Set<Integer> set = new HashSet<>(map.values());
+        return map.size() == set.size();
     }
 }
