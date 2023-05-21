@@ -16,3 +16,7 @@ class Solution {
         return rad.size() == 0 ? "Dire" : "Radiant";
     }
 }
+/*
+    for explanation
+    https://leetcode.com/problems/dota2-senate/discuss/3483399/Simple-Diagram-Explanation
+*/
