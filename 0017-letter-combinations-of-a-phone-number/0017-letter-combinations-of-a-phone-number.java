@@ -10,7 +10,7 @@ class Solution {
             }
             return finalResult;
         }
-        System.out.println("current index ->"+digits.charAt(0));
+        
         String currentValue = letters[Character.getNumericValue(digits.charAt(0))];
         List<String> result = findCombinations(digits.substring(1));
         
