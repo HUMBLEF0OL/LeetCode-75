@@ -1,0 +1,4 @@
+- fin the maximum number of bananas that she can eat
+- now find the mid value and check whether eating m bananas per hour can be a possible solution or not
+- if yes then update the right end to mid otherwsie update the left side to mid+1
+- keep on applying binary search and in the end return right side
